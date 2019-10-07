@@ -40,6 +40,7 @@ class TensorSaver(tp.Callback):
     if self.local_step not in self._steps: return
 
     args = vals.results
+
     for op, v in zip(self._fetches, args):
       vname = self._uptovar[op].replace('/', '_')
       fname = '%04d__%s__%s' % (self.local_step, vname, 'g' if 'train_op/update_' in op.name else 'v')
